@@ -20,7 +20,7 @@ model User {
   avatar   String
 
   sessions Session[]
-  posts    Post[]
+  notes    Note[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -36,15 +36,14 @@ model Session {
   @@index([userId])
 }
 
-model Post {
-  id   String @id @default(cuid())
-  name String
+model Note {
+  id      String @id @default(cuid())
+  title   String
+  content String
 
   user   User   @relation(fields: [userId], references: [id])
   userId String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@index([name])
 }
